@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+
+    <% if (locals.id) { %>
+        <p>The new short url generated: http://localhost:8000/api/<%= id %></p>
+    <% } %>
+    <h1> URL Shortner </h1>
+
+    <div>
+        <form method="POST" action="/url">
+            <label>Enter your url</label>
+            <input type="text" placeholder="Enter the url" name="url">
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <% if (locals.allurls) { %>
+        <table>
+            <thead>
+                <th>S.NO</th>
+                <th>shortID</th>
+                <th>RedirectUrl</th>
+                <th>clicks</th>
+            </thead>
+            <tbody>
+                <% allurls.forEach(urls => { %>
+                    <tr></tr>
+                    <tr>
+                        <%=urls.shortId  %>
+                    </tr>
+                    <tr>
+                        <%= urls.redirectedUrl %>
+                    </tr>
+                    <tr>
+                        <%= urls.visitedHostory.length %>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+</body>
+</html>
